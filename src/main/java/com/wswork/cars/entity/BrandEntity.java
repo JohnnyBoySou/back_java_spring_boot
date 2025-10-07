@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Brand {
+public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,5 +18,5 @@ public class Brand {
 
     @OneToMany(mappedBy = "brand")
     @JsonManagedReference
-    private List<Model> models;
+    private List<ModelEntity> modelEntities;
 }

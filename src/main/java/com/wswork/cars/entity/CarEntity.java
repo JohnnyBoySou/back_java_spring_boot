@@ -8,7 +8,7 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +22,5 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "model_id")
-    private Model model;
+    private ModelEntity modelEntity;
 }

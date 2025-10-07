@@ -1,13 +1,11 @@
 package com.wswork.cars.controller;
 
-import com.wswork.cars.entity.Brand;
+import com.wswork.cars.entity.BrandEntity;
 import com.wswork.cars.repository.BrandRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,7 +19,7 @@ public class BrandController {
     }
 
     @GetMapping
-    public Page<Brand> getAllBrands(
+    public Page<BrandEntity> getAllBrands(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
@@ -30,14 +28,14 @@ public class BrandController {
     }
 
     @PostMapping
-    public Brand createBrand(@RequestBody Brand brand) {
-        return brandRepository.save(brand);
+    public BrandEntity createBrand(@RequestBody BrandEntity brandEntity) {
+        return brandRepository.save(brandEntity);
     }
 
     @PutMapping("/{id}")
-    public Brand updateBrand(@PathVariable Long id, @RequestBody Brand brand) {
-        brand.setId(id);
-        return brandRepository.save(brand);
+    public BrandEntity updateBrand(@PathVariable Long id, @RequestBody BrandEntity brandEntity) {
+        brandEntity.setId(id);
+        return brandRepository.save(brandEntity);
     }
 
     @DeleteMapping("/{id}")
@@ -46,21 +44,21 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    public Brand getBrandById(@PathVariable Long id) {
+    public BrandEntity getBrandById(@PathVariable Long id) {
         return brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Brand not found with id " + id));
     }
 
     @PatchMapping("/{id}")
-    public Brand patchBrand(@PathVariable Long id, @RequestBody Brand brandUpdates) {
-        Brand existingBrand = brandRepository.findById(id)
+    public BrandEntity patchBrand(@PathVariable Long id, @RequestBody BrandEntity brandEntityUpdates) {
+        BrandEntity existingBrandEntity = brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Brand not found with id " + id));
 
-        if (brandUpdates.getName() != null) {
-            existingBrand.setName(brandUpdates.getName());
+        if (brandEntityUpdates.getName() != null) {
+            existingBrandEntity.setName(brandEntityUpdates.getName());
         }
 
-        return brandRepository.save(existingBrand);
+        return brandRepository.save(existingBrandEntity);
     }
 
 }

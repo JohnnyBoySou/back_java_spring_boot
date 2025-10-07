@@ -1,7 +1,7 @@
 package com.wswork.cars.controller;
 
-import com.wswork.cars.entity.Brand;
-import com.wswork.cars.entity.Model;
+import com.wswork.cars.entity.BrandEntity;
+import com.wswork.cars.entity.ModelEntity;
 import com.wswork.cars.repository.ModelRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,7 @@ public class ModelController {
     }
 
     @GetMapping
-    public Page<Model> getAllModels(
+    public Page<ModelEntity> getAllModels(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
@@ -29,14 +29,14 @@ public class ModelController {
     }
 
     @PostMapping
-    public Model createModel(@RequestBody Model model) {
-        return modelRepository.save(model);
+    public ModelEntity createModel(@RequestBody ModelEntity modelEntity) {
+        return modelRepository.save(modelEntity);
     }
 
     @PutMapping("/{id}")
-    public Model updateModel(@PathVariable Long id, @RequestBody Model model) {
-        model.setId(id);
-        return modelRepository.save(model);
+    public ModelEntity updateModel(@PathVariable Long id, @RequestBody ModelEntity modelEntity) {
+        modelEntity.setId(id);
+        return modelRepository.save(modelEntity);
     }
 
     @DeleteMapping("/{id}")
@@ -45,24 +45,24 @@ public class ModelController {
     }
 
     @PatchMapping("/{id}")
-    public Model patchModel(@PathVariable Long id, @RequestBody Model modelUpdates) {
-        Model existingModel = modelRepository.findById(id)
+    public ModelEntity patchModel(@PathVariable Long id, @RequestBody ModelEntity modelEntityUpdates) {
+        ModelEntity existingModelEntity = modelRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Model not found with id " + id));
 
-        if (modelUpdates.getName() != null) existingModel.setName(modelUpdates.getName());
-        if (modelUpdates.getFipeValue() != null) existingModel.setFipeValue(modelUpdates.getFipeValue());
+        if (modelEntityUpdates.getName() != null) existingModelEntity.setName(modelEntityUpdates.getName());
+        if (modelEntityUpdates.getFipeValue() != null) existingModelEntity.setFipeValue(modelEntityUpdates.getFipeValue());
 
-        if (modelUpdates.getBrand() != null && modelUpdates.getBrand().getId() != null) {
-            Brand brand = new Brand();
-            brand.setId(modelUpdates.getBrand().getId());
-            existingModel.setBrand(brand);
+        if (modelEntityUpdates.getBrandEntity() != null && modelEntityUpdates.getBrandEntity().getId() != null) {
+            BrandEntity brandEntity = new BrandEntity();
+            brandEntity.setId(modelEntityUpdates.getBrandEntity().getId());
+            existingModelEntity.setBrandEntity(brandEntity);
         }
 
-        return modelRepository.save(existingModel);
+        return modelRepository.save(existingModelEntity);
     }
 
     @GetMapping("/{id}")
-    public Model getModelById(@PathVariable Long id) {
+    public ModelEntity getModelById(@PathVariable Long id) {
         return modelRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Model not found with id " + id));
     }
