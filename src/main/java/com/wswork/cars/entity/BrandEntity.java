@@ -16,7 +16,8 @@ public class BrandEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brandEntity")
     @JsonManagedReference
     private List<ModelEntity> modelEntities;
+
 }
