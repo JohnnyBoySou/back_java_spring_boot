@@ -1,0 +1,558 @@
+type: collection.insomnia.rest/5.0
+name: Back_Cars
+meta:
+  id: wrk_538013777702492ea5f0c6019d379bd0
+  created: 1759856593355
+  modified: 1759860881859
+  description: ""
+collection:
+  - name: Brands
+    meta:
+      id: fld_df778c2aeac64f15bd07dd02dbfb8ee5
+      created: 1759856635811
+      modified: 1759856641992
+      sortKey: -1759856635811
+      description: ""
+    children:
+      - url: http://localhost:8080/brands
+        name: Create
+        meta:
+          id: req_7bf6c63b1d3f42baa20987ae975254e5
+          created: 1759856643769
+          modified: 1759856695982
+          isPrivate: false
+          description: ""
+          sortKey: -1759856643769
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Chevrolet"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/brands?page=0
+        name: Read
+        meta:
+          id: req_cf7068ea070841b78808a7cb9b65415c
+          created: 1759857031780
+          modified: 1759860153969
+          isPrivate: false
+          description: ""
+          sortKey: -1759802704664.125
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/brands/1
+        name: Single
+        meta:
+          id: req_701950723aca4378923c01bc5cd55d98
+          created: 1759857823001
+          modified: 1759859812720
+          isPrivate: false
+          description: ""
+          sortKey: -1759533009139.75
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/brands/1
+        name: Update
+        meta:
+          id: req_aa2b70a558c74de3b073a4ab5a9b81ad
+          created: 1759858591877
+          modified: 1759858604871
+          isPrivate: false
+          description: ""
+          sortKey: -1759748765559.25
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Chevrolet 2"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/brands/1
+        name: Update field
+        meta:
+          id: req_b71af5c248304328b2503dbffac00524
+          created: 1759858624960
+          modified: 1759859787300
+          isPrivate: false
+          description: ""
+          sortKey: -1759694826454.375
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Chevrolet Plus"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/brands/1
+        name: Delete
+        meta:
+          id: req_6656cb82c7024173a3649a13c2e145b6
+          created: 1759858668259
+          modified: 1759858678352
+          isPrivate: false
+          description: ""
+          sortKey: -1759721796006.8125
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Models
+    meta:
+      id: fld_d736d52adbec44439f377659ff289307
+      created: 1759856704518
+      modified: 1759856704518
+      sortKey: -1758839717027
+      description: ""
+    children:
+      - url: http://localhost:8080/models
+        name: Create
+        meta:
+          id: req_d54b37de11664804a77b094ec80e9b1a
+          created: 1759856704520
+          modified: 1759859370518
+          isPrivate: false
+          description: ""
+          sortKey: -1759856643769
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Onix Plus",
+              "fipeValue": 50000,
+              "brand": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/models/1
+        name: Update
+        meta:
+          id: req_aaff2ed0b4554317b86775cf361d8395
+          created: 1759859045377
+          modified: 1759859845770
+          isPrivate: false
+          description: ""
+          sortKey: -1759802704664.125
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "name": "Onix Plus",
+              "fipeValue": 80000,
+              "brand": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/models?page=0
+        name: Read
+        meta:
+          id: req_23bd1b49d3cc47f6b727b669932d9def
+          created: 1759859062310
+          modified: 1759860165264
+          isPrivate: false
+          description: ""
+          sortKey: -1759829674216.5625
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/models/2
+        name: Single
+        meta:
+          id: req_43bfc062c13b4aa19289b8120b517970
+          created: 1759859080666
+          modified: 1759860009270
+          isPrivate: false
+          description: ""
+          sortKey: -1759775735061.6875
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/models/1
+        name: Update field
+        meta:
+          id: req_2c69c222a3c5473fb61079c5e7f2431e
+          created: 1759859109227
+          modified: 1759859403401
+          isPrivate: false
+          description: ""
+          sortKey: -1759802704614.125
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "fipeValue":90000
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/models/1
+        name: Delete
+        meta:
+          id: req_7d5f65eed90d4b04861637e6e84f05c3
+          created: 1759859920622
+          modified: 1759859937113
+          isPrivate: false
+          description: ""
+          sortKey: -1759802704639.125
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Cars
+    meta:
+      id: fld_377ecba64fe345079a04cde676a470ea
+      created: 1759856730026
+      modified: 1759856730026
+      sortKey: -1758331257635
+      description: ""
+    children:
+      - url: http://localhost:8080/cars
+        name: Create
+        meta:
+          id: req_2653b7f2b45f44b9a3056e8340ed42f4
+          created: 1759856730027
+          modified: 1759860037423
+          isPrivate: false
+          description: ""
+          sortKey: -1759856643769
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "registrationTimestamp": "2023-10-07T12:00:00Z",
+              "year": 2015,
+              "fuel": "FLEX",
+              "doorCount": 4,
+              "color": "BEIGE",
+              "model": {
+                "id": 2
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cars?page=0
+        name: Read
+        meta:
+          id: req_c4d3767350514ad99e700950e4c0626f
+          created: 1759860018586
+          modified: 1759860174917
+          isPrivate: false
+          description: ""
+          sortKey: -1759849901380.8906
+        method: GET
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "registrationTimestamp": "2023-10-07T12:00:00Z",
+              "year": 2015,
+              "fuel": "FLEX",
+              "doorCount": 4,
+              "color": "BEIGE",
+              "model": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cars/2
+        name: Single
+        meta:
+          id: req_12af6d6aa6e644cdb7ad63fd09929aee
+          created: 1759860087337
+          modified: 1759860101723
+          isPrivate: false
+          description: ""
+          sortKey: -1759816189440.3438
+        method: GET
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "registrationTimestamp": "2023-10-07T12:00:00Z",
+              "year": 2015,
+              "fuel": "FLEX",
+              "doorCount": 4,
+              "color": "BEIGE",
+              "model": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cars/2
+        name: Delete
+        meta:
+          id: req_0252fa01d00a4c93b09e0203630c081e
+          created: 1759860122764
+          modified: 1759860176765
+          isPrivate: false
+          description: ""
+          sortKey: -1759829674216.5625
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "registrationTimestamp": "2023-10-07T12:00:00Z",
+              "year": 2015,
+              "fuel": "FLEX",
+              "doorCount": 4,
+              "color": "BEIGE",
+              "model": {
+                "id": 1
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cars/2
+        name: Update
+        meta:
+          id: req_74374266821648bbb927bfdbcd9a580a
+          created: 1759860140038
+          modified: 1759860254280
+          isPrivate: false
+          description: ""
+          sortKey: -1759843158992.7812
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |
+            {
+             	"year": 2015,
+            	"fuel": "FLEX",
+            	"doorCount": 4,
+            	"color": "BEIGE"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/cars/2
+        name: Update field
+        meta:
+          id: req_f57f212479404c7080e54112b8a03ead
+          created: 1759860275168
+          modified: 1759860292400
+          isPrivate: false
+          description: ""
+          sortKey: -1759836416604.6719
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |
+            {
+            	"color": "AZUL"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_191672e6e844e16212d4963a9aff6e50a9c84cec
+    created: 1759856593380
+    modified: 1759856593380
+environments:
+  name: Base Environment
+  meta:
+    id: env_191672e6e844e16212d4963a9aff6e50a9c84cec
+    created: 1759856593378
+    modified: 1759856593378
+    isPrivate: false
