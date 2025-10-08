@@ -1,6 +1,6 @@
 package com.wswork.cars.controller;
 
-import com.wswork.cars.entity.BrandEntity;
+import com.wswork.cars.entity.Brand;
 import com.wswork.cars.repository.BrandRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +19,7 @@ public class BrandController {
     }
 
     @GetMapping
-    public Page<BrandEntity> getAllBrands(
+    public Page<Brand> getAllBrands(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
@@ -28,14 +28,14 @@ public class BrandController {
     }
 
     @PostMapping
-    public BrandEntity createBrand(@RequestBody BrandEntity brandEntity) {
-        return brandRepository.save(brandEntity);
+    public Brand createBrand(@RequestBody Brand brand) {
+        return brandRepository.save(brand);
     }
 
     @PutMapping("/{id}")
-    public BrandEntity updateBrand(@PathVariable Long id, @RequestBody BrandEntity brandEntity) {
-        brandEntity.setId(id);
-        return brandRepository.save(brandEntity);
+    public Brand updateBrand(@PathVariable Long id, @RequestBody Brand brand) {
+        brand.setId(id);
+        return brandRepository.save(brand);
     }
 
     @DeleteMapping("/{id}")
@@ -44,21 +44,21 @@ public class BrandController {
     }
 
     @GetMapping("/{id}")
-    public BrandEntity getBrandById(@PathVariable Long id) {
+    public Brand getBrandById(@PathVariable Long id) {
         return brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Brand not found with id " + id));
     }
 
     @PatchMapping("/{id}")
-    public BrandEntity patchBrand(@PathVariable Long id, @RequestBody BrandEntity brandEntityUpdates) {
-        BrandEntity existingBrandEntity = brandRepository.findById(id)
+    public Brand patchBrand(@PathVariable Long id, @RequestBody Brand brandUpdates) {
+        Brand existingBrand = brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Brand not found with id " + id));
 
-        if (brandEntityUpdates.getName() != null) {
-            existingBrandEntity.setName(brandEntityUpdates.getName());
+        if (brandUpdates.getName() != null) {
+            existingBrand.setName(brandUpdates.getName());
         }
 
-        return brandRepository.save(existingBrandEntity);
+        return brandRepository.save(existingBrand);
     }
 
 }

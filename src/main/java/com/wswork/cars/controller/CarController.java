@@ -1,6 +1,6 @@
 package com.wswork.cars.controller;
 
-import com.wswork.cars.entity.CarEntity;
+import com.wswork.cars.entity.Car;
 import com.wswork.cars.repository.CarRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,8 +19,8 @@ public class CarController {
     }
 
     @GetMapping
-    public Page<CarEntity> getAllCars(
-            @RequestParam(defaultValue =  "0") int page,
+    public Page<Car> getAllCars(
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
@@ -28,14 +28,28 @@ public class CarController {
     }
 
     @PostMapping
-    public CarEntity createCar(@RequestBody CarEntity carEntity) {
-        return carRepository.save(carEntity);
+    public Car createCar(@RequestBody Car car) {
+        return carRepository.save(car);
     }
 
     @PutMapping("/{id}")
-    public CarEntity updateCar(@PathVariable Long id, @RequestBody CarEntity carEntity) {
-        carEntity.setId(id);
-        return carRepository.save(carEntity);
+    public Car updateCar(@PathVariable Long id, @RequestBody Car car) {
+        car.setId(id);
+        return carRepository.save(car);
+    }
+
+    @PatchMapping("/{id}")
+    public Car patchCar(@PathVariable Long id, @RequestBody Car updates) {
+        Car existing = carRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Car not found with id " + id));
+
+        if (updates.getYear() != null) existing.setYear(updates.getYear());
+        if (updates.getFuel() != null) existing.setFuel(updates.getFuel());
+        if (updates.getDoorCount() != null) existing.setDoorCount(updates.getDoorCount());
+        if (updates.getColor() != null) existing.setColor(updates.getColor());
+        if (updates.getModel() != null) existing.setModel(updates.getModel());
+
+        return carRepository.save(existing);
     }
 
     @DeleteMapping("/{id}")
@@ -43,24 +57,20 @@ public class CarController {
         carRepository.deleteById(id);
     }
 
-    @PatchMapping("/{id}")
-    public CarEntity patchCar(@PathVariable Long id, @RequestBody CarEntity carEntityUpdates) {
-        CarEntity existingCarEntity = carRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Car not found with id " + id));
-
-        if (carEntityUpdates.getYear() != null) existingCarEntity.setYear(carEntityUpdates.getYear());
-        if (carEntityUpdates.getFuel() != null) existingCarEntity.setFuel(carEntityUpdates.getFuel());
-        if (carEntityUpdates.getDoorCount() != null) existingCarEntity.setDoorCount(carEntityUpdates.getDoorCount());
-        if (carEntityUpdates.getColor() != null) existingCarEntity.setColor(carEntityUpdates.getColor());
-        if (carEntityUpdates.getModelEntity() != null) existingCarEntity.setModelEntity(carEntityUpdates.getModelEntity());
-        if (carEntityUpdates.getRegistrationTimestamp() != null) existingCarEntity.setRegistrationTimestamp(carEntityUpdates.getRegistrationTimestamp());
-
-        return carRepository.save(existingCarEntity);
-    }
-
     @GetMapping("/{id}")
-    public CarEntity getCarById(@PathVariable Long id) {
+    public Car getCarById(@PathVariable Long id) {
         return carRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Car not found with id " + id));
     }
+
+    @GetMapping("/by-brand/{brandId}")
+    public Page<Car> getCarsByBrand(
+            @PathVariable Long brandId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return carRepository.findByModel_Brand_Id(brandId, pageable);
+    }
+
 }

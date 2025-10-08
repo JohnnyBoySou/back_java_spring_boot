@@ -9,15 +9,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandEntity {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "brandEntity")
+    @OneToMany(mappedBy = "brand")
     @JsonManagedReference
-    private List<ModelEntity> modelEntities;
+    private List<Model> model;
 
 }

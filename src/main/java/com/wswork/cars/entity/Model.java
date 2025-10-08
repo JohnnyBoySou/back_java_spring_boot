@@ -8,16 +8,16 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ModelEntity {
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private Double fipeValue;
+    private Double fipe;
 
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     @JsonBackReference
-    private BrandEntity brandEntity;
+    private Brand brand;
 }

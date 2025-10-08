@@ -1,10 +1,12 @@
 package com.wswork.cars.repository;
 
-import com.wswork.cars.entity.CarEntity;
+import com.wswork.cars.entity.Car;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CarRepository extends JpaRepository<CarEntity, Long> {
-    // Possível filtro por model, year, color, etc.
+public interface CarRepository extends JpaRepository<Car, Long> {
+    Page<Car> findByModel_Brand_Id(Long brandId, Pageable pageable);
 }
